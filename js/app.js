@@ -91,6 +91,7 @@ function compare(present_Card, previous_Card) {
 
         Cards_opened = [];
     }
+    addMove();
     gameFinish();
 }
 
@@ -147,6 +148,19 @@ Reset.addEventListener("click", function() {
     reset();
 
 });
+
+
+
+const movesContainer = document.querySelector(".moves");
+let moves = 0;
+movesContainer.innerHTML = 0;
+
+function addMove() {
+    moves++;
+    movesContainer.innerHTML = moves;
+    grade();  
+     }
+
 
 
 function reset() {
