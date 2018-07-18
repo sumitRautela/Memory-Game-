@@ -7,12 +7,52 @@ const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o",
 
 
 const cardsBox = document.querySelector(".collection");
+let Cards_opened = [];
+let Cards_matched = [];
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
+
+
+
+start();
+
+function start() {
+    for(let i = 0; i < icons.length; i++) {
+        const card = document.createElement("li");
+        card.classList.add("card");
+        card.innerHTML = "<i class='"+ icons[i] + "'></i>";
+        cardsBox.appendChild(card);
+    
+        click(card);
+    }
+}
+
+
+
+
+
+
+
+function click(card) {
+
+    card.addEventListener("click", function() {
+
+        
+        
+        const present_Card = this;
+        const previous_Card = Cards_opened[0];
+
+     
+
+    
+
+     
+}
+
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
