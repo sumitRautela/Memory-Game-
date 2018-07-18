@@ -42,17 +42,29 @@ function click(card) {
     card.addEventListener("click", function() {
 
         
-        
         const present_Card = this;
         const previous_Card = Cards_opened[0];
 
      
 
+        if(Cards_opened.length === 1) {
+
+            card.classList.add("open", "show", "disable");
+            Cards_opened.push(this);
+
+
+            compare(present_Card, previous_Card);
+            
+
+        } else {
     
+            present_Card.classList.add("open", "show", "disable");
+            Cards_opened.push(this);
+        }
+        
+    });
 
-     
 }
-
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
