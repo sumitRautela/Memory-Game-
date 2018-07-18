@@ -5,7 +5,6 @@ const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o",
 "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt",
  "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 
-
 const cardsBox = document.querySelector(".collection");
 let Cards_opened = [];
 let Cards_matched = [];
@@ -21,16 +20,15 @@ let Cards_matched = [];
 start();
 
 function start() {
+    const shuffleIcons = shuffle(icons);
     for(let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
         card.classList.add("card");
         card.innerHTML = "<i class='"+ icons[i] + "'></i>";
         cardsBox.appendChild(card);
-        const shuffleIcons = shuffle(icons);
         click(card);
     }
 }
-
 
 
 
@@ -41,6 +39,7 @@ function click(card) {
 
     card.addEventListener("click", function() {
 
+       
         
         const present_Card = this;
         const previous_Card = Cards_opened[0];
@@ -64,6 +63,32 @@ function click(card) {
         
     });
 
+}
+
+function compare(present_Card, previous_Card) {
+
+  
+    if(present_Card.innerHTML === previous_Card.innerHTML) {
+                
+        
+        present_Card.classList.add("match");
+        previous_Card.classList.add("match");
+
+        Cards_matched.push(present_Card, previous_Card);
+
+        Cards_opened = []; 
+
+    } else {
+            present_Card.classList.add('wrongCard');
+            previous_Card.classList.add('wrongCard');
+        setTimeout(function() {
+            present_Card.classList.remove("open", "show", "disable","wrongCard");
+            previous_Card.classList.remove("open", "show", "disable","wrongCard");
+            
+        }, 600);
+
+        Cards_opened = [];
+    }
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
