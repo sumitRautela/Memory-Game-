@@ -30,12 +30,19 @@ function start() {
 
 
 
+let is_first_click = true;
 
 function click(card) {
 
     card.addEventListener("click", function() {
 
-        startTimer();
+       if(is_first_click) {
+            
+           startTimer();
+
+          is_first_click = false;
+        }
+        
 
        const present_Card = this;
         const previous_Card = Cards_opened[0];
@@ -138,8 +145,7 @@ Reset.addEventListener("click", function() {
 
 function reset() {
 
-     
-   
+     is_first_click = true;
      Cards_matched = [];
      
     
