@@ -91,6 +91,7 @@ function compare(present_Card, previous_Card) {
 
         Cards_opened = [];
     }
+    gameFinish();
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -130,6 +131,10 @@ function startTimer()
 
 }
 
+function stopTimer()
+{
+     clearInterval(liveTimer);
+}
 
 
 Reset.addEventListener("click", function() {
@@ -143,10 +148,19 @@ Reset.addEventListener("click", function() {
 
 });
 
+
 function reset() {
 
      is_first_click = true;
      Cards_matched = [];
-     
+      }
+
+function gameFinish(){
+    if(Cards_matched.length === icons.length) {
+
+    stopTimer();
+        
+   alert( "Congratulations! You won in " +  minute.innerHTML + ":" + seconds.innerHTML + " seconds"); 
     
-                  }
+}
+}
