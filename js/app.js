@@ -26,7 +26,7 @@ function start() {
         card.classList.add("card");
         card.innerHTML = "<i class='"+ icons[i] + "'></i>";
         cardsBox.appendChild(card);
-    
+        const shuffleIcons = shuffle(icons);
         click(card);
     }
 }
