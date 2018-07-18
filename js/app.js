@@ -30,13 +30,14 @@ function start() {
 
 
 
+
 function click(card) {
 
     card.addEventListener("click", function() {
 
-       
-        
-        const present_Card = this;
+        startTimer();
+
+       const present_Card = this;
         const previous_Card = Cards_opened[0];
 
      
@@ -59,7 +60,6 @@ function click(card) {
     });
 
 }
-
 function compare(present_Card, previous_Card) {
 
   
@@ -102,6 +102,29 @@ function shuffle(array) {
 }
 
 
+
+const timerContainer = document.querySelector(".timer");
+var allSeconds=0;
+
+
+
+function startTimer()
+{
+    liveTimer=setInterval(function()
+{       
+ ++allSeconds;
+  
+  var minute = Math.floor((allSeconds / 60));
+  var seconds = allSeconds - (minute * 60);
+
+  
+  document.getElementById(`minute`).innerHTML = minute;
+  document.getElementById(`seconds`).innerHTML = seconds; },1000);
+
+}
+
+
+
 Reset.addEventListener("click", function() {
 
     cardsBox.innerHTML = "";
@@ -115,6 +138,9 @@ Reset.addEventListener("click", function() {
 
 function reset() {
 
+     
+   
      Cards_matched = [];
+     
     
-}
+                  }
