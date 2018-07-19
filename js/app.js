@@ -158,7 +158,28 @@ movesContainer.innerHTML = 0;
 function addMove() {
     moves++;
     movesContainer.innerHTML = moves;
+    grade();
      }
+
+
+const starsContainer = document.querySelector(".stars");
+const star = `<li><i class="fa fa-star"></i></li>`;
+starsContainer.innerHTML = star + star + star;
+
+function grade() {
+
+    if( moves < 10) {
+        starsGot=" 3 stars";
+        starsContainer.innerHTML = star + star + star;
+    } else if( moves < 15) {
+        starsGot=" 2 stars";
+        starsContainer.innerHTML = star + star;
+    } else {
+        starsGot=" 1 star";
+        starsContainer.innerHTML = star;
+    }
+    
+}
 
 
 
