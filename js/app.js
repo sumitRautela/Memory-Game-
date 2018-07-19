@@ -1,6 +1,4 @@
-/*
- * Create a list that holds all of your cards
- */
+// list of all the icons used the memory game
 const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", 
 "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt",
  "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
@@ -8,25 +6,44 @@ const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o",
 const cardsBox = document.querySelector(".collection");
 let Cards_opened = [];
 let Cards_matched = [];
+let starsGot;
 
-let Reset = document.querySelector(".reset");
+
+const timerContainer = document.querySelector(".timer");
+var allSeconds=0;
 
 
+
+const movesContainer = document.querySelector(".moves");
+let moves = 0;
+movesContainer.innerHTML = 0;
+
+
+const resetBtn = document.querySelector(".reset");
+
+
+const starsContainer = document.querySelector(".stars");
+const star = `<li><i class="fa fa-star"></i></li>`;
+starsContainer.innerHTML = star + star + star;
+
+
+let resetButton = document.querySelector(".reset");
 
 start();
 
+
 function start() {
+    resetButton.textContent="reset";
     const shuffleIcons = shuffle(icons);
     for(let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
         card.classList.add("card");
         card.innerHTML = "<i class='"+ icons[i] + "'></i>";
         cardsBox.appendChild(card);
+    
         click(card);
     }
 }
-
-
 
 
 
@@ -36,15 +53,15 @@ function click(card) {
 
     card.addEventListener("click", function() {
 
-       if(is_first_click) {
+        
+        if(is_first_click) {
             
-           startTimer();
+            startTimer();
 
-          is_first_click = false;
+            is_first_click = false;
         }
         
-
-       const present_Card = this;
+        const present_Card = this;
         const previous_Card = Cards_opened[0];
 
      
@@ -67,6 +84,9 @@ function click(card) {
     });
 
 }
+
+
+
 function compare(present_Card, previous_Card) {
 
   
@@ -91,11 +111,11 @@ function compare(present_Card, previous_Card) {
 
         Cards_opened = [];
     }
-    addMove();
+    addMove();  
     gameFinish();
 }
+        
 
-// Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -111,9 +131,16 @@ function shuffle(array) {
 }
 
 
+function gameFinish(){
+    if(Cards_matched.length === icons.length) {
 
-const timerContainer = document.querySelector(".timer");
-var allSeconds=0;
+    stopTimer();
+    resetButton.textContent="play Again";
+        
+    setTimeout( function ( ) { alert( "Congratulations! You won in " +  minute.innerHTML + ":" + seconds.innerHTML + " seconds" + " In " + moves + " moves" + " and have got" + starsContainer.textContent + starsGot ); }, 500 ); 
+    }
+}
+
 
 
 
@@ -138,33 +165,13 @@ function stopTimer()
 }
 
 
-Reset.addEventListener("click", function() {
-
-    cardsBox.innerHTML = "";
-
-
-    start();
-
-    reset();
-
-});
-
-
-
-const movesContainer = document.querySelector(".moves");
-let moves = 0;
-movesContainer.innerHTML = 0;
-
 function addMove() {
     moves++;
     movesContainer.innerHTML = moves;
-    grade();
+    grade();  
      }
 
 
-const starsContainer = document.querySelector(".stars");
-const star = `<li><i class="fa fa-star"></i></li>`;
-starsContainer.innerHTML = star + star + star;
 
 function grade() {
 
@@ -182,24 +189,27 @@ function grade() {
 }
 
 
+resetBtn.addEventListener("click", function() {
+
+    cardsBox.innerHTML = "";
+
+
+    start();
+
+    reset();
+
+});
 
 function reset() {
-     stopTimer();
-     is_first_click = true;
-     Cards_matched = [];
-     allSeconds=0;
-     minute.innerHTML=0;
-     seconds.innerHTML=0;
-     moves = 0;
-      movesContainer.innerHTML = moves;
-      }
-
-function gameFinish(){
-    if(Cards_matched.length === icons.length) {
-
-    stopTimer();
-        
-   alert( "Congratulations! You won in " +  minute.innerHTML + ":" + seconds.innerHTML + " seconds"); 
     
-}
+    moves = 0;
+    movesContainer.innerHTML = moves;
+    starsContainer.innerHTML = star + star + star;
+    resetButton.textContent="reset";
+    stopTimer();
+    allSeconds=0;
+    minute.innerHTML=0;
+    seconds.innerHTML=0;
+     Cards_matched = [];
+    is_first_click = true;
 }
