@@ -14,11 +14,28 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
+    background-color: silver !important;
 }
+h1 {
+            color: white;
+            line-height: 1.1;
+            text-align: center;
+            font-weight: normal;
+            background: steelblue;
+            margin: 0;
+            text-transform: uppercase;
+            padding: 20px 0;
+            display: block !important;
+            width:100%;
+        }
 
 body {
-    background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
+    background: #ffffff url('../img/geometry2.png'); 
     font-family: 'Coda', cursive;
+}
+#minute 
+{
+    margin-left:30px; 
 }
 
 .container {
@@ -27,15 +44,15 @@ body {
     align-items: center;
     flex-direction: column;
 }
-
-h1 {
-    font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+.holder
+{
+    margin-top: 50px;
 }
 
-/*
- * Styles for the collection of cards
- */
+
+#colorDisplay {
+           font-size: 200%;
+        }
 
 .collection {
     width: 660px;
@@ -80,30 +97,47 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
+.collection .card.disable {
+    pointer-events: none;
+}
+.collection .card.wrongCard {
+    background: #B80F0A;
 
-/*
- * Styles for the Score Panel
- */
-
-.score-panel {
-    text-align: left;
-    width: 345px;
-    margin-bottom: 10px;
 }
 
-.score-panel .stars {
+.score-board {
+    width: 345px;
+    background-color: white;
+    height: 30px;
+    display: block;
+    width: 100%;
+    text-align: center;
+}
+.holder
+{
+
+
+}
+
+
+.score-board .stars {
     margin: 0;
     padding: 0;
     display: inline-block;
     margin: 0 5px 0 0;
 }
 
-.score-panel .stars li {
+.score-board .stars li {
     list-style: none;
     display: inline-block;
 }
 
-.score-panel .reset {
-    float: right;
+.score-board .reset {
+    display: inline-block;
+    margin-left: 60px;
     cursor: pointer;
+}
+.timer
+{
+    margin-left: 30px;
 }

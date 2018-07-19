@@ -33,7 +33,7 @@ start();
 
 
 function start() {
-    resetButton.textContent="reset";
+    resetButton.textContent="Reset";
     const shuffleIcons = shuffle(icons);
     for(let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
@@ -135,7 +135,7 @@ function gameFinish(){
     if(Cards_matched.length === icons.length) {
 
     stopTimer();
-    resetButton.textContent="play Again";
+    resetButton.textContent="Play Again";
         
     setTimeout( function ( ) { alert( "Congratulations! You won in " +  minute.innerHTML + ":" + seconds.innerHTML + " seconds" + " In " + moves + " moves" + " and have got" + starsContainer.textContent + starsGot ); }, 500 ); 
     }
@@ -205,7 +205,7 @@ function reset() {
     moves = 0;
     movesContainer.innerHTML = moves;
     starsContainer.innerHTML = star + star + star;
-    resetButton.textContent="reset";
+    resetButton.textContent="Reset";
     stopTimer();
     allSeconds=0;
     minute.innerHTML=0;
