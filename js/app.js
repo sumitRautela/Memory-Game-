@@ -158,15 +158,19 @@ movesContainer.innerHTML = 0;
 function addMove() {
     moves++;
     movesContainer.innerHTML = moves;
-    grade();  
      }
 
 
 
 function reset() {
-
+     stopTimer();
      is_first_click = true;
      Cards_matched = [];
+     allSeconds=0;
+     minute.innerHTML=0;
+     seconds.innerHTML=0;
+     moves = 0;
+      movesContainer.innerHTML = moves;
       }
 
 function gameFinish(){
