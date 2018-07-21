@@ -205,6 +205,7 @@ function reset() {
     moves = 0;
     movesContainer.innerHTML = moves;
     starsContainer.innerHTML = star + star + star;
+    Cards_opened=[];
     stopTimer();
     allSeconds=0;
     minute.innerHTML=0;
