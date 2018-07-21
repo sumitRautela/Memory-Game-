@@ -1,20 +1,21 @@
 # Memory Game Project
 
-## Table of Contents
+## How to play the game
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+We have 16 cards each having a pair of distinct icons associated with each other.
+Therfore we have total 8 icons distributed between 16 cards.
+All you need to do is click on a card see the icon associated with it and then click on a another card. 
+If the next card is similar to the previous card then the card will get matched.
+However if the cards do not match then the cards gets closed again.
+Based on how your performance in the game you will also be given stars.
 
-## Instructions
+## How to play 
+Click on Clone or download button.
+And the download the zip repository.
+Open the zip file and enjoy the game.
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
 
-To get started, open `js/app.js` and start building out the app's functionality
-
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
-
-## Contributing
-
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
-
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
+##Technologies used are:
+HTML
+CSS
+JavaScript
