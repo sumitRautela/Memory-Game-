@@ -8,12 +8,12 @@ let Cards_opened = [];
 let Cards_matched = [];
 let starsGot;
 
-
+//To calculate the time
 const timerContainer = document.querySelector(".timer");
 var allSeconds=0;
 
 
-
+//To calculate the number of moves 
 const movesContainer = document.querySelector(".moves");
 let moves = 0;
 movesContainer.innerHTML = 0;
@@ -21,7 +21,7 @@ movesContainer.innerHTML = 0;
 
 const resetBtn = document.querySelector(".reset");
 
-
+//To give ratings to the player with respect to the number of moves 
 const starsContainer = document.querySelector(".stars");
 const star = `<li><i class="fa fa-star"></i></li>`;
 starsContainer.innerHTML = star + star + star;
@@ -31,9 +31,8 @@ let resetButton = document.querySelector(".reset");
 
 start();
 
-
+//To intialize the cards with a particular icon
 function start() {
-    resetButton.textContent="Reset";
     const shuffleIcons = shuffle(icons);
     for(let i = 0; i < icons.length; i++) {
         const card = document.createElement("li");
@@ -46,7 +45,7 @@ function start() {
 }
 
 
-
+//To show the icon associated with a particular card when it is clicked
 let is_first_click = true;
 
 function click(card) {
@@ -56,7 +55,7 @@ function click(card) {
         
         if(is_first_click) {
             
-            startTimer();
+            startTimer();   //As soon as the first card is clicked the timer starts running
 
             is_first_click = false;
         }
@@ -86,7 +85,7 @@ function click(card) {
 }
 
 
-
+//To compare the cards and determine whether they match or not
 function compare(present_Card, previous_Card) {
 
   
@@ -98,14 +97,14 @@ function compare(present_Card, previous_Card) {
 
         Cards_matched.push(present_Card, previous_Card);
 
-        Cards_opened = []; 
+        Cards_opened = [];        //If cards are similar
 
     } else {
             present_Card.classList.add('wrongCard');
             previous_Card.classList.add('wrongCard');
         setTimeout(function() {
             present_Card.classList.remove("open", "show", "disable","wrongCard");
-            previous_Card.classList.remove("open", "show", "disable","wrongCard");
+            previous_Card.classList.remove("open", "show", "disable","wrongCard"); //If cards are not similar
             
         }, 600);
 
@@ -115,7 +114,7 @@ function compare(present_Card, previous_Card) {
     gameFinish();
 }
         
-
+//Function to the shuffle the cards
 function shuffle(array) {
     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -130,28 +129,28 @@ function shuffle(array) {
     return array;
 }
 
-
+//As soon as the game ends we stop the timer and display the player's score
 function gameFinish(){
     if(Cards_matched.length === icons.length) {
 
     stopTimer();
-    resetButton.textContent="Play Again";
+   
+   modalDisplay();
         
-    setTimeout( function ( ) { alert( "Congratulations! You won in " +  minute.innerHTML + ":" + seconds.innerHTML + " seconds" + " In " + moves + " moves" + " and have got" + starsContainer.textContent + starsGot ); }, 500 ); 
     }
 }
 
 
 
-
+//Function to start the timer as soon as the user clicks on the first card
 function startTimer()
 {
     liveTimer=setInterval(function()
 {       
  ++allSeconds;
   
-  var minute = Math.floor((allSeconds / 60));
-  var seconds = allSeconds - (minute * 60);
+  var minute = Math.floor((allSeconds / 60)); //we are making a minute:seconds clock
+  var seconds = allSeconds - (minute * 60);   
 
   
   document.getElementById(`minute`).innerHTML = minute;
@@ -161,34 +160,34 @@ function startTimer()
 
 function stopTimer()
 {
-     clearInterval(liveTimer);
+     clearInterval(liveTimer);   //To stop the timer
 }
 
 
 function addMove() {
     moves++;
-    movesContainer.innerHTML = moves;
+    movesContainer.innerHTML = moves; //The function adds a move everytime two cards are opened and compared
     grade();  
      }
 
 
-
+//We define the ratings or grades on the basis of number of moves taken by the user
 function grade() {
 
     if( moves < 10) {
-        starsGot=" 3 stars";
+        starsGot=" 3 stars"; //for less than 10 moves
         starsContainer.innerHTML = star + star + star;
     } else if( moves < 15) {
-        starsGot=" 2 stars";
+        starsGot=" 2 stars"; //for moves between 10 and 15
         starsContainer.innerHTML = star + star;
     } else {
-        starsGot=" 1 star";
+        starsGot=" 1 star"; //for moves more than 15
         starsContainer.innerHTML = star;
     }
     
 }
 
-
+//The reset features restarts the game again as soon as the user clicks on the icon
 resetBtn.addEventListener("click", function() {
 
     cardsBox.innerHTML = "";
@@ -200,12 +199,12 @@ resetBtn.addEventListener("click", function() {
 
 });
 
+//The reset function is called when the user clicks on the reset button
 function reset() {
     
     moves = 0;
     movesContainer.innerHTML = moves;
     starsContainer.innerHTML = star + star + star;
-    resetButton.textContent="Reset";
     stopTimer();
     allSeconds=0;
     minute.innerHTML=0;
@@ -213,3 +212,64 @@ function reset() {
      Cards_matched = [];
     is_first_click = true;
 }
+
+
+
+
+
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+function modalDisplay() 
+{
+    modal.style.display = "block";
+    Result.innerHTML="Congratulations! You took " +  moves + " moves" + " In " + minute.innerHTML + ":" + seconds.innerHTML + " seconds" +" and have got" + starsContainer.textContent + starsGot;
+
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+let Result=document.querySelector(".result");
+
+
+//when the user click on play again the game starts again works like reset functionality
+const Play_again=document.querySelector(".playAgain");
+
+Play_again.addEventListener("click", function() {
+
+    cardsBox.innerHTML = "";
+
+     modal.style.display = "none";
+
+    start();
+
+    reset();
+
+
+
+});
+
+//when the user click on exit the modal simply closes
+const Exit=document.querySelector(".exit");
+
+Exit.addEventListener('click',function(){
+    modal.style.display="none";
+});
+
+
+
